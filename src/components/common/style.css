@@ -1,0 +1,74 @@
+.projects-card {
+    background-color: #ccd2da;
+    height: 550px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+/* Flattened .project-content styles */
+.projects-card .project-content {
+    position: relative;
+    top: 0;
+    height: 100px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    transition: color 0.5s ease;
+}
+
+/* Flattened button styles */
+.projects-card .project-content button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, background-color 0.5s ease, all .5s ease;
+}
+
+
+
+/* Flattened .project-img styles */
+.projects-card .project-img {
+    height: calc(100% - 100px);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Flattened img styles */
+.projects-card .project-img img {
+    object-position: center;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Flattened &:hover styles */
+.projects-card:hover .project-content button {
+    transform: scale(40);
+}
+
+.dropdown-transition {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .dropdown-transition-enter {
+    opacity: 1;
+    transform: translateY(0);
+  }

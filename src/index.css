@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-primary: #7F5539;
+  --color-secondary: #DDB892;
+  --color-secondaryD: #D3A373;
+  --color-tertiary: #CCD5AE;
+  --color-txt: #B08968;
+  --color-txtS: #E6CCB2;
+  --color-bck: #EDE0D4;
+}
+
+:root {
+  font-family: 'montserrat';
+  --color-black: #000;
+  --color-white: #fff;
+  --color-primary: #7F5539;
+  --color-secondary: #DDB892;
+  --color-secondaryD: #D3A373;
+  --color-tertiary: #ADC178;
+  --color-txt: #B08968;
+  --color-txtS: #E6CCB2;
+  --color-bck: #faf1e9;
+}
+
+html {
+  /* background-color: var(--color-secondary); */
+  background-color: var(--color-bck);
+  /* max-width: 1920px; */
+  max-width: 2560px;
+  /* 2k */
+  margin: auto;
+  scroll-behavior: smooth;
+  padding: 0;
+  /* margin: 0; */
+}
+
+@font-face {
+  font-family: 'valky';
+  src: url('/assets/fonts/valky.otf');
+}
+
+.mainfont {
+  font-family: 'Noto Serif Display';
+}
+
+button{
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet {
+  background: var(--color-primary) !important;
+}
+
+.scroller-thin {
+  overflow-y: auto;
+  /* Ensure scrolling is enabled */
+}
+
+.scroller-thin::-webkit-scrollbar {
+  width: 0px;
+  height: 8px;
+  border-radius: 4px;
+  /* Use border-radius instead of -webkit-border-radius */
+}
+
+.scroller-thin::-webkit-scrollbar-thumb {
+  background: #ccc;
+  /* Customize the scrollbar thumb */
+  border-radius: 4px;
+}
+
+.scroller-thin::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  /* Customize the scrollbar track */
+}
+
+.thumbnail {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.thumbnail.selected {
+  border-color: #7F5539;
+}

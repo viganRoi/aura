@@ -1,0 +1,15 @@
+export const mainUrl = 'https://flux-ks.com';
+//export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'https://srv412786.hstgr.cloud:7145'
+export const objectImageUrl = 'images/'
+export const planmetricImageUrl = '/images/planimetrit/'
+// export const BASE_URL = 'http://localhost:8845';
+// export const BASE_URL_JEHONA = 'http://localhost:8845';
+export const STORE_IMAGE_PATH = 'objektetImg/';
+export const EURO_SYMBOL = '€';
+export const homepage = `https://flux-ks.com`
+export const galleryDir = 'assets/gallery/'
+export const imagePath = `https://flux-ks.com/objektetImg/`
+export const pdfPath = `https://flux-ks.com/pdf/`
+export const vTourPath = `/360/interior`
+export const orientationImgPath = `images/orientation/`

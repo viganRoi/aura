@@ -1,0 +1,31 @@
+<svg enable-background="new 0 0 500 500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <g id="Layer_2" />
+    <g id="Layer_1" />
+    <g id="Layer_3">
+        <g
+            style="fill:none;stroke:white;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-width:15">
+            <g>
+                <path d="m254 239.5h-31.5v-35h-65v35h-33v212.5" />
+                <path d="m175 278.5h-46" />
+                <path d="m216 278.5h-7" />
+                <path d="m175 318.5h-46" />
+                <path d="m216 318.5h-7" />
+                <path d="m61.5 452v-93l67.5-.5h46" />
+                <path d="m216 358.5h-7" />
+                <path d="m175 398.5h-46" />
+                <path d="m216 398.5h-7" />
+            </g>
+            <g>
+                <path d="m392 452v-305.878l-130.271-98.358v403.952" />
+                <path d="m339 169.5h-46" />
+                <path d="m339 214.5h-46" />
+                <path d="m339 259.5h-46" />
+                <path d="m339 304.5h-46" />
+                <path d="m339 349.5h-46" />
+                <path d="m339 394.5h-46" />
+            </g>
+            <path d="m27 453.5h445" />
+            <path d="m392 312.5h50.5v139.5" />
+        </g>
+    </g>
+</svg>
