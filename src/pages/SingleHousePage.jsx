@@ -19,7 +19,7 @@ const SingleHousePage = () => {
   return (
     <div className="py-20">
       <SingleHouse />
-      <ApartmentsCarousel />
+      {/* <ApartmentsCarousel /> */}
     </div>
   );
 };
