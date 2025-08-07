@@ -7,7 +7,7 @@ export const fetchAllHouses = createAsyncThunk(
     'house/fetchAllHouses',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetch('${BASE_URL}/api/houses');
+            const response = await fetch(`${BASE_URL}/api/houses`);
             if (!response.ok) {
                 throw new Error('Failed to fetch houses');
             }
