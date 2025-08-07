@@ -14,7 +14,7 @@ import { setApartmentEditData, setApartmentEditModalState } from '../../features
 import { updateIsSold } from '../../features/apartment/ApartmentAPI';
 import { setApartmentIdModalApartmentId, setApartmentIdModalId, setApartmentIdModalState } from '../../features/apartment/ApartmentSlice';
 import SalesModal from '../sales/SalesModal';
-import { setHouseEditModal } from '../../features/house/HouseSlice';
+import { setHouseEditData, setHouseEditModal } from '../../features/house/HouseSlice';
 
 const ContextMenu = ({ menu, setMenu }) => {
     const dispatch = useDispatch()
@@ -82,6 +82,7 @@ const ContextMenu = ({ menu, setMenu }) => {
         onClick={() => {
           
             dispatch(setHouseEditModal(true))
+            dispatch(setHouseEditData(menu?.data));
             setMenu((prev) => ({...prev, open: false, anchorEl: null}))
         }}
         // onClick={() => {

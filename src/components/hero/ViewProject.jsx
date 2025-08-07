@@ -38,10 +38,6 @@ const ViewProject = () => {
     );
   };
 
-  const handleContextMenu = (event) => {
-    setMenu({ open: true, anchorEl: event.currentTarget });
-  };
-
   const currentBuilding =
     buildings.find((b) => b.name === selectedTab) || buildings[0];
 
@@ -109,7 +105,14 @@ const ViewProject = () => {
                   key={point.id}
                   className={point.type === "commercial" ? "cm0" : "st0"}
                   d={point.points}
-                  onContextMenu={handleContextMenu}
+                  onContextMenu={(e) => {
+                    e.preventDefault();
+                    setMenu({
+                      open: true,
+                      anchorEl: e.currentTarget,
+                      data: point,
+                    });
+                  }}
                   onMouseEnter={() => setHoveredId(point.id)}
                   onMouseLeave={() => setHoveredId(null)}
                   onClick={() => navigate(`/${point.type}/${point.name}`)}

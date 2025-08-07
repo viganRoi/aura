@@ -42,7 +42,7 @@ export const fetchHouseById = createAsyncThunk(
     'house/fetchHouseById',
     async (houseId, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${BASE_URL}/api/houses/${houseId}`);
+            const response = await fetch(fetchHouseById(houseId));
             if (!response.ok) {
                 throw new Error('Failed to fetch house');
             }
@@ -52,3 +52,26 @@ export const fetchHouseById = createAsyncThunk(
         }
     }
 )
+
+export const updateHouseThunk = createAsyncThunk(
+  'house/updateHouse',
+  async ({ houseId, houseData }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/house/${houseId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(houseData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update house');
+      }
+
+      return await response.json(); // return updated house or success message
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
