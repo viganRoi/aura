@@ -5,7 +5,7 @@ const neighborhoodName = 'aura'; // Replace with actual neighborhood name or par
 const API = {
     fetchAllHouses: `${BASE_URL}/api/house`,
     fetchAllHousesByNeighborhood: (name) => `${BASE_URL}/api/house/get/by-neighborhood?name=${name}`,
-    fetchHouseById: (houseId) => `${BASE_URL}/api/house/${houseId}`,
+    fetchHouseById: (houseId) => `${BASE_URL}/api/house?id=${houseId}`,
 }
 
 export const fetchAllHouses = createAsyncThunk(
@@ -42,7 +42,7 @@ export const fetchHouseById = createAsyncThunk(
     'house/fetchHouseById',
     async (houseId, { rejectWithValue }) => {
         try {
-            const response = await fetch(fetchHouseById(houseId));
+            const response = await fetch(API.fetchHouseById(houseId));
             if (!response.ok) {
                 throw new Error('Failed to fetch house');
             }

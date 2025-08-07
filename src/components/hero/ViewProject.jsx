@@ -21,6 +21,12 @@ const ViewProject = () => {
     data: {}
   });
 
+  const [menu, setMenu] = useState({
+    open: false,
+    anchorEl: null,
+    data: {}
+  });
+
   const getSvgHeight = () => {
     return "100%";
   };
@@ -77,6 +83,14 @@ const ViewProject = () => {
             {houses?.houseDtoList.map((point) => (
               <path
                 key={point.id}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  setMenu({
+                    open: true,
+                    anchorEl: e.currentTarget,
+                    data: point,
+                  });
+                }}
                 className={point.type === "commercial" ? 'sold' : 'available'}
                 d={point.points}
                 onMouseEnter={(e) => {
@@ -109,6 +123,11 @@ const ViewProject = () => {
         </div>
       </div>
       {popup.open && <HouseHoverModal house={popup.data} mousePosition={mousePosition} />}
+      <ContextMenu 
+        menu={menu}
+        setMenu={setMenu}
+      />
+      <AdmHouseModal />
     </div>
   );
 };

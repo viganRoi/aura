@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchHouseById, updateHouseThunk } from "../../../features/house/HouseApi";
-import { getHouseData, getHouseEditData, getHouseLoading, setHouseEditModal } from "../../../features/house/HouseSlice";
+import { getHouseData, getHouseEditData, getHouseEditModalState, getHouseLoading, setHouseEditModal } from "../../../features/house/HouseSlice";
 import { Box, IconButton, Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
@@ -11,6 +11,7 @@ const AdmHouseModal = () => {
   const { houseId } = useParams();
 
     const currentHouse = useSelector(getHouseEditData);
+    const open = useSelector(getHouseEditModalState)
     // const error = useSelector(getHouseError);
     // const success = useSelector(getHouseSuccess);
 
@@ -148,7 +149,7 @@ const AdmHouseModal = () => {
     };
 
   return (
-    <Modal open={true}>
+    <Modal open={open} onClose={() => dispatch(setHouseEditModal(false))}>
       <Box sx={style}>
         <IconButton onClick={() => dispatch(setHouseEditModal(false))} className="absolute top-0 right-0">
             <Close />
