@@ -86,3 +86,60 @@ button{
 .thumbnail.selected {
   border-color: #7F5539;
 }
+
+
+
+.available {
+  /* fill: #0e37524d; */
+  fill: #119b244d;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  opacity: 1;
+  stroke: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  stroke-width: 1px;
+  outline: none;
+  width: 100%;
+}
+
+.filtered {
+  fill: #21434B;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s ease 0s;
+  opacity: 1;
+  stroke: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* stroke-width: 1px; */
+  outline: none;
+  width: 100%;
+}
+
+.filtered:hover {
+  fill: #21434B;
+  opacity: 0.9;
+}
+
+.available:hover {
+  /* fill: #0E3752; */
+  fill: #10771ea2;
+  opacity: 0.8;
+}
+
+.sold {
+  fill: #8b0000;
+  opacity: 0.5;
+  stroke-width: 1px;
+  stroke: white;
+}
+.reserved{
+  fill: #fd8b20;
+  opacity: 0.5;
+  stroke-width: 1px;
+  stroke: white;
+}

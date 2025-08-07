@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
@@ -16,56 +15,6 @@ const Footer = () => {
               </button>
           </div>
         </div>
-        {/* <div className="w-[80%] flex flex-col xl:flex-row gap-5 align-center justify-between text-start">
-          <div className="w-full h-full flex flex-col gap-3 align-center justify-between">
-            <h1 className="mb-2 w-1/2 montserrat text-nowrap">Contact</h1>
-            <div className="flex flex-row gap-1">
-              <p className="montserrat text-nowrap">email</p>
-              <p className="montserrat text-nowrap">+ 38383497700</p>
-            </div>
-          </div>
-          <div className="w-full h-full flex flex-col gap-3 align-center justify-between">
-            <h1 className="mb-2 w-1/2 montserrat text-nowrap">Head Office</h1>
-            <div className="flex  flex-row gap-1">
-              <p className="montserrat text-nowrap">foleja address</p>
-            </div>
-          </div>
-          <div className="w-full h-full flex flex-col gap-3 align-center justify-between">
-            <h1 className="mb-2 w-1/2 montserrat text-nowrap">Sales Center</h1>
-            <div className="flex flex-row gap-1">
-              <p className="montserrat text-nowrap">foleja address</p>
-            </div>
-          </div>
-          <div className="w-full h-full flex flex-col gap-3 align-center justify-between">
-            <h1 className="mb-2 w-1/2 montserrat text-nowrap">Navigate</h1>
-            <div className="flex flex-row gap-5">
-              <NavLink
-                to="/"
-                className="hover:text-[var(--brand-color)] transition-all capitalize duration-300 montserrat text-nowrap"
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/about-us"
-                className="hover:text-[var(--brand-color)] transition-all capitalize duration-300 montserrat text-nowrap"
-              >
-                About
-              </NavLink>
-              <NavLink
-                to="/contact-us"
-                className="hover:text-[var(--brand-color)] transition-all capitalize duration-300 montserrat text-nowrap"
-              >
-                Contact
-              </NavLink>
-              <NavLink
-                to="/apartments"
-                className="hover:text-[var(--brand-color)] transition-all capitalize duration-300 montserrat text-nowrap"
-              >
-                apartments
-              </NavLink>
-            </div>
-          </div>
-        </div> */}
         <div className="w-full md:w-1/4 flex flex-col gap-4 items-center justify-between text-start">
           <div className="w-full h-full flex gap-2 items-start justify-between">
             <h1 className="mb-2 w-1/2 montserrat text-nowrap">Kontakt</h1>
