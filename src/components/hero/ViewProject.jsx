@@ -4,10 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { imagePath } from "../../utils/consts";
 import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
+import { getHouseData, getHouseLoading } from "../../features/house/HouseSlice";
 
 const ViewProject = () => {
   const navigate = useNavigate();
   const ref = useRef(null);
+  const dispatch = useDispatch();
+  const houses = useSelector(getHouseData);
+  const loading = useSelector(getHouseLoading)
   const isSmallDev = window.innerWidth < 700;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredId, setHoveredId] = useState(null);
@@ -39,11 +45,15 @@ const ViewProject = () => {
     return "100%";
   };
 
-  useEffect(function () {
-    setTimeout(function () {
-      ref.current.scrollLeft = 1000;
-    }, 1000);
-  }, []);
+  // useEffect(function () {
+  //   setTimeout(function () {
+  //     ref.current.scrollLeft = 1000;
+  //   }, 1000);
+  // }, []);
+
+  useEffect(() => {
+    dispatch(fetchAllHousesByNeighborhood())
+  }, [dispatch]);
 
   return (
     <div className="relative bg-black w-full h-[85vh] md:h-[100vh] flex flex-col items-center justify-center">
@@ -86,11 +96,11 @@ const ViewProject = () => {
                 width="100%"
                 height="100%"
               />
-              {currentBuilding.points.map((point) => (
+              {houses?.houseDtoList.map((point) => (
                 <path
                   key={point.id}
                   className={point.type === "commercial" ? "cm0" : "st0"}
-                  d={point.path}
+                  d={point.points}
                   onMouseEnter={() => setHoveredId(point.id)}
                   onMouseLeave={() => setHoveredId(null)}
                   onClick={() => navigate(`/${point.type}/${point.name}`)}

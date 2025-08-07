@@ -8,6 +8,7 @@ import ProjectSlice from "../features/project/ProjectSlice";
 import CommercialStoreSlice from "../features/commercialStore/CommercialStoreSlice";
 import GallerySlice from "../features/gallery/GallerySlice";
 import WishlistSlice from "../features/wishList/WishlistSlice";
+import HouseSlice from "../features/house/HouseSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     CommercialStoreSlice: CommercialStoreSlice,
     GallerySlice: GallerySlice,
     WishlistSlice: WishlistSlice,
+    HouseSlice: HouseSlice,
   },
 });

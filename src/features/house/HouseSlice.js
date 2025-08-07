@@ -1,3 +1,4 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { fetchAllHouses, fetchAllHousesByNeighborhood, fetchHouseById } from "./HouseApi";
 
 const initialState = {
