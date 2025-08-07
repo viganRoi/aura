@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
 import { getHouseData } from "../../features/house/HouseSlice";
 import { HouseHoverModal } from "../";
+import ContextMenu from "../contextMenu/ContextMenu";
 
 const ViewProject = () => {
   const navigate = useNavigate();
