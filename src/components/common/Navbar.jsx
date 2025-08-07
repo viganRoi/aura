@@ -51,7 +51,7 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <img
-                  src="https://flux-ks.com/wp-content/uploads/2023/07/Flux-Logo-whiteYellow-e1696543864342-2048x608.png"
+                  src="/assets/images/brand/logo.png"
                   alt="logo"
                   className="h-10"
                 />

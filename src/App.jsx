@@ -1,27 +1,14 @@
-import React from "react";
 import { Routes, Route, HashRouter as Router } from "react-router-dom";
 import {
-  AboutPage,
   AllApartmentsPage,
-  BlogPage,
   BuildingPage,
-  CommercialPage,
-  ContactPage,
   FloorPage,
   GeneralBuildingPage,
   HomePage,
-  ParkingPage,
-  PortfolioPage,
   SingleApartmentPage,
   WishlistPage,
   ConditionalLayout,
   ErrorPage,
-  CommercialUnitPage,
-  AllCommercialPage,
-  TempCommA,
-  TempCommB,
-  TempCommC,
-  TempCommD,
   VirtualPage,
 } from "./pages";
 import { ToastContainer } from "react-toastify";
@@ -45,21 +32,14 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/svg-extrator" element={<SvgExtractor />} />
           <Route path="/fsvg-extrator" element={<FloorSvgExtractor />} />
-          <Route
-            path="/fbsvg-extrator"
-            element={<FloorBuildingSvgExtractor />}
-          />
+          <Route path="/fbsvg-extrator" element={<FloorBuildingSvgExtractor />} />
           <Route path="/psvg-extrator" element={<ParkingSvgExtractor />} />
-          <Route
-            path="/store/svg-extractor"
-            element={<SvgExtractorForStores />}
-          />
+          <Route path="/store/svg-extractor" element={<SvgExtractorForStores />} />
           <Route path="/buildings" element={<GeneralBuildingPage />} />
           <Route path="/buildings/:id" element={<BuildingPage />} />
           <Route path="/buildings/:id/floor/:floorId" element={<FloorPage />} />
           <Route path="/apartments/:id" element={<SingleApartmentPage />} />
           <Route path="/apartments" element={<AllApartmentsPage />} />
-          <Route path="/360-virtual" element={<VirtualPage />} />
           <Route
             path="/admin/*"
             element={
