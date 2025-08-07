@@ -7,6 +7,7 @@ import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
 import { getHouseData } from "../../features/house/HouseSlice";
 import { HouseHoverModal } from "../";
 import ContextMenu from "../contextMenu/ContextMenu";
+import AdmHouseModal from "../admin/apartments/AdmHouseModal";
 
 const ViewProject = () => {
   const navigate = useNavigate();
