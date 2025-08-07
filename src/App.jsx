@@ -34,6 +34,7 @@ import SingleApartmentByFloorPage from "./pages/SibleApartmentByFloorPage";
 import FloorSvgPage from "./pages/FloorSvgPage";
 import ParkingSvgExtractor from "./pages/admin/svgExtractor/ParkingSvgExtractor";
 import SvgExtractorForStores from "./pages/admin/svgExtractor/SvgExtractorForStores";
+import HouseSvgExtractor from "./pages/HouseSvgExtractor";
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
           <Route
             path="/store/svg-extractor"
             element={<SvgExtractorForStores />}
+          />
+          <Route
+            path="/house/svg-extractor"
+            element={<HouseSvgExtractor />}
           />
           <Route path="/buildings" element={<GeneralBuildingPage />} />
           <Route path="/buildings/:id" element={<BuildingPage />} />
