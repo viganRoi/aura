@@ -10,6 +10,8 @@ import { HouseHoverModal } from "../";
 const ViewProject = () => {
   const navigate = useNavigate();
   const ref = useRef(null);
+  const [menu, setMenu] = useState({ open: false, anchorEl: null });
+  const modalState = useSelector((state) => state.HouseSlice.houseEditModal);
   const dispatch = useDispatch();
   const houses = useSelector(getHouseData);
   const isSmallDev = window.innerWidth < 700;
