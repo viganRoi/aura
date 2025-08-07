@@ -38,9 +38,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-screen fixed top-0 z-50 transition-nav ${
-          isScrolled ? "bg-black" : "bg-transparent"
-        }`}
+        className={`w-screen fixed top-0 z-50 transition-nav ${isScrolled ? "bg-black" : "bg-transparent"
+          }`}
       >
         <div className="max-w-11/12 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -58,37 +57,12 @@ const Navbar = () => {
               </a>
             </div>
             <div className="hidden xl:flex space-x-4 items-center text-xl montserrat">
-              <a
-                href="https://flux-ks.com" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-nowrap uppercase"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Ballina
-              </a>
-              <a
-                href="https://flux-ks.com/rreth-nesh/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-nowrap uppercase"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Rreth Nesh
-              </a>
-              <a
-                href="https://flux-ks.com/rreth-nesh/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-nowrap uppercase"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                NA KONTAKTONI
-              </a>
               <NavLink
                 to="/360-virtual"
                 className={`text-white text-nowrap uppercase `}
               >
                 360 Virtual
               </NavLink>
-
               <div className="hidden md:flex items-center space-x-2">
                 <NavLink
                   to="/wishlist"
@@ -173,7 +147,6 @@ const Navbar = () => {
                   {wishListItemCount}
                 </span>
               )}
-
               {wishListItemCount > 0 ? (
                 <IoIosHeart className="fill-white text-lg sm:text-2xl" />
               ) : (
@@ -187,48 +160,8 @@ const Navbar = () => {
               <IoCloseOutline />
             </button>
           </div>
-          <div className=" w-11/12 flex flex-col items-start">
+          <div className="w-11/12 flex flex-col items-start">
             <div className="w-full flex flex-col items-start gap-8 md:gap-2 pt-24  md:pt-12  p-2">
-              <a
-                href="https://flux-ks.com" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-2xl md:text-7xl uppercase font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Ballina
-              </a>
-              <a
-                href="https://flux-ks.com/projektet/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-2xl md:text-7xl uppercase font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projektet
-              </a>
-              <a
-                href="https://flux-ks.com/galeria/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-2xl md:text-7xl uppercase font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Galeria
-              </a>
-              <a
-                href="https://flux-ks.com/rreth-nesh/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-2xl md:text-7xl uppercase font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Rreth Nesh
-              </a>
-              <a
-                href="https://flux-ks.com/na-kontaktoni/" // <-- replace with your desired URL
-                rel="noopener noreferrer" // recommended for security
-                className="text-white text-2xl md:text-7xl uppercase font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Na Kontaktoni
-              </a>
               <NavLink
                 to="/360-virtual"
                 className="text-white text-2xl md:text-7xl uppercase font-normal"
