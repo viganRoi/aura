@@ -91,7 +91,7 @@ const ViewProject = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <image
-                href={currentBuilding.image}
+                href={`${imagePath}${houses?.neighborhoodName}-general.png`}
                 alt={currentBuilding.name}
                 width="100%"
                 height="100%"
