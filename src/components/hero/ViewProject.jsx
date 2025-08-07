@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
 import { getHouseData } from "../../features/house/HouseSlice";
 import { HouseHoverModal } from "../";
+import ContextMenu from "../contextMenu/ContextMenu";
 
 const ViewProject = () => {
   const navigate = useNavigate();
@@ -24,18 +25,8 @@ const ViewProject = () => {
     setActiveButton(filter);
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % buildings.length);
-  };
+  
 
-  const handlePrevious = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + buildings.length) % buildings.length
-    );
-  };
-
-  const currentBuilding =
-    buildings.find((b) => b.name === selectedTab) || buildings[0];
 
   const handleTabClick = (view) => {
     setSelectedTab(view);
@@ -93,7 +84,6 @@ const ViewProject = () => {
             >
               <image
                 href={`${imagePath}${houses?.neighborhoodName}-general.png`}
-                alt={currentBuilding.name}
                 width="100%"
                 height="100%"
               />
