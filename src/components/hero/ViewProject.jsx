@@ -7,10 +7,14 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
 import { getHouseData, getHouseLoading } from "../../features/house/HouseSlice";
+import ContextMenu from "../contextMenu/ContextMenu";
+import AdmHouseModal from "../admin/apartments/AdmHouseModal";
 
 const ViewProject = () => {
   const navigate = useNavigate();
   const ref = useRef(null);
+  const [menu, setMenu] = useState({ open: false, anchorEl: null });
+  const modalState = useSelector((state) => state.HouseSlice.houseEditModal);
   const dispatch = useDispatch();
   const houses = useSelector(getHouseData);
   const loading = useSelector(getHouseLoading)
@@ -32,6 +36,10 @@ const ViewProject = () => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + buildings.length) % buildings.length
     );
+  };
+
+  const handleContextMenu = (event) => {
+    setMenu({ open: true, anchorEl: event.currentTarget });
   };
 
   const currentBuilding =
@@ -56,7 +64,7 @@ const ViewProject = () => {
   }, [dispatch]);
 
   return (
-    <div className="relative bg-black w-full h-[85vh] md:h-[100vh] flex flex-col items-center justify-center">
+    <div onContextMenu={(e) => e.preventDefault()} className="relative bg-black w-full h-[85vh] md:h-[100vh] flex flex-col items-center justify-center">
       <div className="relative w-screen bg-black h-full flex flex-col justify-center items-center overflow-x-auto md:overflow-x-hidden">
         <div
           className="absolute md:relative w-full flex items-center justify-center "
@@ -101,6 +109,7 @@ const ViewProject = () => {
                   key={point.id}
                   className={point.type === "commercial" ? "cm0" : "st0"}
                   d={point.points}
+                  onContextMenu={handleContextMenu}
                   onMouseEnter={() => setHoveredId(point.id)}
                   onMouseLeave={() => setHoveredId(null)}
                   onClick={() => navigate(`/${point.type}/${point.name}`)}
@@ -146,6 +155,8 @@ const ViewProject = () => {
           </label>
         </div>
       </div>
+      <ContextMenu menu={menu} setMenu={setMenu}/>
+      {modalState && (<AdmHouseModal />)}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { AddLocation, Image, LocationCity, Photo, PictureAsPdf, ThreeDRotation, Tour, ViewInAr } from "@mui/icons-material";
+import { AddLocation, Image, Photo, PictureAsPdf, ThreeDRotation, ViewInAr } from "@mui/icons-material";
 import {
   Divider,
   FormControl,
@@ -10,7 +10,6 @@ import {
   FormLabel,
   Grid,
   IconButton,
-  Input,
   InputAdornment,
   Radio,
   RadioGroup,
@@ -21,7 +20,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { imagePath, mainUrl, pdfPath, planmetricImageUrl, vTourPath } from "../../../utils/consts";
 import { getApartmentEditData, getApartmentEditModalState, getApartmentEditStatus, resetStatusAndMsg, setApartmentEditModalState } from "../../../features/apartment/ApartmentEditSlice";
-import { updateApartment } from "../../../features/apartment/ApartmentAPI";
 import axiosInstance from "../../auth/axiosInstance";
 
 const style = {

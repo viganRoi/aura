@@ -7,12 +7,19 @@ const initialState = {
     error: null,
     success: false,
     message: null,
+    houseEditModal: false
 }
 
 export const HouseSlice = createSlice({
     name: 'house',
     initialState,
     reducers: {
+        toggleHouseEditModal: (state) => {
+            state.houseEditModal = !state.houseEditModal;
+        },
+        setHouseEditModal: (state, action) => {
+            state.houseEditModal = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -65,6 +72,8 @@ export const HouseSlice = createSlice({
 
 export const {
     // Add any reducers if needed
+    toggleHouseEditModal,
+    setHouseEditModal
 } = HouseSlice.actions;
 
 export const getHouseData = (state) => state.HouseSlice.house;
@@ -72,5 +81,6 @@ export const getHouseLoading = (state) => state.HouseSlice.loading;
 export const getHouseError = (state) => state.HouseSlice.error;
 export const getHouseSuccess = (state) => state.HouseSlice.success;
 export const getHouseMessage = (state) => state.HouseSlice.message;
+export const getHouseEditModalState = (state) => state.HouseSlice.houseEditModal;
 
 export default HouseSlice.reducer;
