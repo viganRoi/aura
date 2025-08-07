@@ -6,9 +6,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getAllApartmentSvgData } from "../../features/apartment/ApartmentSlice";
 import {
-  getRegularFloorFilter,
-  getRegularRoomFilter,
-  getRegularSquareFilter,
   handleFilterState,
   handleRegularFilterReset,
   maxFloor,

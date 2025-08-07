@@ -1,14 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { buildings } from "../../utils/server";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { imagePath } from "../../utils/consts";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
-import { getHouseData, getHouseLoading } from "../../features/house/HouseSlice";
-import ContextMenu from "../contextMenu/ContextMenu";
-import AdmHouseModal from "../admin/apartments/AdmHouseModal";
+import { getHouseData } from "../../features/house/HouseSlice";
+import { HouseHoverModal } from "../";
 
 const ViewProject = () => {
   const navigate = useNavigate();
@@ -17,7 +14,6 @@ const ViewProject = () => {
   const modalState = useSelector((state) => state.HouseSlice.houseEditModal);
   const dispatch = useDispatch();
   const houses = useSelector(getHouseData);
-  const loading = useSelector(getHouseLoading)
   const isSmallDev = window.innerWidth < 700;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredId, setHoveredId] = useState(null);
@@ -49,15 +45,16 @@ const ViewProject = () => {
     return "100%";
   };
 
-  // useEffect(function () {
-  //   setTimeout(function () {
-  //     ref.current.scrollLeft = 1000;
-  //   }, 1000);
-  // }, []);
-
   useEffect(() => {
     dispatch(fetchAllHousesByNeighborhood())
   }, [dispatch]);
+
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
 
   return (
     <div onContextMenu={(e) => e.preventDefault()} className="relative bg-black w-full h-[85vh] md:h-[100vh] flex flex-col items-center justify-center">
