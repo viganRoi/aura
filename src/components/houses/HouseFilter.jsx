@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FaHouse } from "react-icons/fa6";
 
-const HouseFilter = () => {
+const HouseFilter = ({ available }) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const typeFilter = useSelector(getRegularFilterType);
@@ -38,6 +38,7 @@ const HouseFilter = () => {
                     <h1 className='text-2xl'>Tipi {type}</h1>
                 </button>
             ))}
+            {/* <h1 className='text-2xl'>Available: {available}</h1> */}
         </div>
     );
 };
