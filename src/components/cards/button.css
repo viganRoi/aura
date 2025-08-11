@@ -9,12 +9,12 @@
 }
 
 .swiper-button-next {
-    background-image: url('/assets/images/icons/modalIcon.png');
+    background-image: url('/projektet/assets/images/icons/modalIcon.png');
     transform: rotate(180deg);
 }
 
 .swiper-button-prev {
-    background-image: url('/assets/images/icons/modalIcon.png');
+    background-image: url('/projektet/assets/images/icons/modalIcon.png');
 }
 
 .swiper-button-next::after,
