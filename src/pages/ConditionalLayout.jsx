@@ -5,7 +5,7 @@ import { Footer, Navbar } from "../components";
 const ConditionalLayout = ({ children }) => {
   const location = useLocation();
 
-  const hideNavbarPaths = ["/apartments/:id", "/wishlist"];
+  const hideNavbarPaths = ["/houses/:id", "/wishlist"];
   const hideFooterPaths = ["/wishlist"];
 
   const pathMatches = (pathsArray) => {

@@ -42,10 +42,12 @@ const ViewProject = () => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
+  const houseList = houses?.houseDtoList || [];
+
   return (
-    <div className="relative bg-bck w-full h-[120vh] flex flex-col items-center justify-center">
+    <div className="relative w-full h-[110vh] flex flex-col items-center justify-center">
       <div
-        className="absolute md:relative w-full flex items-center justify-center "
+        className="absolute md:relative w-full flex items-center justify-center"
         style={{ height: getSvgHeight() }}
       >
         <div
@@ -68,19 +70,19 @@ const ViewProject = () => {
             x="0px"
             y="0px"
             viewBox="0 0 1920 1080"
-            width={"100%"}
+            width="100%"
             xmlSpace="preserve"
             preserveAspectRatio="xMidYMid slice"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             xmlns="http://www.w3.org/2000/svg"
           >
             <image
-              href={`${imagePath}${houses?.neighborhoodName}-general.png`}
+              href={`${imagePath}2.jpg`}
               alt={houses?.neighborhoodName}
               width="100%"
               height="100%"
             />
-            {houses?.houseDtoList.map((point) => (
+            {houseList.map((point) => (
               <path
                 key={point.id}
                 onContextMenu={(e) => {
@@ -116,17 +118,14 @@ const ViewProject = () => {
                     data: {},
                   });
                 }}
-                onClick={() => navigate(`/house/${point.id}`)}
+                onClick={() => navigate(`/houses/${point.id}`)}
               />
             ))}
           </svg>
         </div>
       </div>
       {popup.open && <HouseHoverModal house={popup.data} mousePosition={mousePosition} />}
-      <ContextMenu 
-        menu={menu}
-        setMenu={setMenu}
-      />
+      <ContextMenu menu={menu} setMenu={setMenu} />
       <AdmHouseModal />
     </div>
   );

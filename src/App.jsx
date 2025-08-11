@@ -1,11 +1,11 @@
 import { Routes, Route, HashRouter as Router } from "react-router-dom";
 import {
-  AllApartmentsPage,
   ProjectPage,
   WishlistPage,
   ConditionalLayout,
   ErrorPage,
   SingleHousePage,
+  AllHousesPage,
 } from "./pages";
 import { ToastContainer } from "react-toastify";
 import SvgExtractor from "./pages/SvgExtractor";
@@ -22,8 +22,8 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/svg-extrator" element={<SvgExtractor />} />
           <Route path="/house/svg-extractor" element={<HouseSvgExtractor />} />
-          <Route path="/house/:id" element={<SingleHousePage />} />
-          <Route path="/apartments" element={<AllApartmentsPage />} />
+          <Route path="/houses/:id" element={<SingleHousePage />} />
+          <Route path="/houses" element={<AllHousesPage />} />
           <Route
             path="/admin/*"
             element={

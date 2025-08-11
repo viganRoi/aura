@@ -3,31 +3,33 @@
 @theme {
   --color-black: #000;
   --color-white: #fff;
-  --color-primary: #7F5539;
-  --color-secondary: #DDB892;
+  --color-primary: #3C3757;
+  --color-secondary: #F176AE;
   --color-secondaryD: #D3A373;
-  --color-tertiary: #CCD5AE;
+  --color-tertiary: #999999;
   --color-txt: #B08968;
   --color-txtS: #E6CCB2;
-  --color-bck: #EDE0D4;
+  --color-bck: #3C3757;
+  --color-bckS: #F9F6F4;
 }
 
 :root {
   font-family: 'montserrat';
   --color-black: #000;
   --color-white: #fff;
-  --color-primary: #7F5539;
-  --color-secondary: #DDB892;
+  --color-primary: #3C3757;
+  --color-secondary: #F176AE;
   --color-secondaryD: #D3A373;
-  --color-tertiary: #ADC178;
+  --color-tertiary: #999999;
   --color-txt: #B08968;
   --color-txtS: #E6CCB2;
-  --color-bck: #faf1e9;
+  --color-bck: #3C3757;
+  --color-bckS: #F9F6F4;
 }
 
 html {
   /* background-color: var(--color-secondary); */
-  background-color: var(--color-bck);
+  background-color: var(--color-bckS);
   /* max-width: 1920px; */
   max-width: 2560px;
   /* 2k */
@@ -77,18 +79,6 @@ button{
   /* Customize the scrollbar track */
 }
 
-.thumbnail {
-  border: 2px solid transparent;
-  border-radius: 4px;
-  transition: border-color 0.2s;
-}
-
-.thumbnail.selected {
-  border-color: #7F5539;
-}
-
-
-
 .available {
   /* fill: #0e37524d; */
   fill: #119b244d;
@@ -96,7 +86,7 @@ button{
   outline: none;
   transition: all 0.3s ease 0s;
   opacity: 1;
-  stroke: #fff;
+  /* stroke: #fff; */
   justify-content: center;
   align-items: center;
   display: flex;
@@ -111,7 +101,7 @@ button{
   outline: none;
   transition: all 0.4s ease 0s;
   opacity: 1;
-  stroke: white;
+  /* stroke: white; */
   justify-content: center;
   align-items: center;
   display: flex;

@@ -1,53 +1,60 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { ProjectFilter, ViewProject } from "../components";
+import { useEffect, useMemo, useState } from "react";
+import { HouseFilter, Houses, ViewProject } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { getHouseData } from "../features/house/HouseSlice";
 import { fetchAllHousesByNeighborhood } from "../features/house/HouseApi";
-import { getRegularRoomFilter, getRegularSquareFilter, getFilterState } from "../features/filter/FilterSlice";
+import { getFilterState, getRegularFilterType } from "../features/filter/FilterSlice";
 
 const ProjectPage = () => {
   const dispatch = useDispatch();
   const houses = useSelector(getHouseData);
-  const roomFilter = useSelector(getRegularRoomFilter);
-  const squareFilter = useSelector(getRegularSquareFilter);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const typeFilter = useSelector(getRegularFilterType);
   const reduxFilterState = useSelector(getFilterState);
-  const [filterState, setFilterState] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllHousesByNeighborhood());
   }, [dispatch]);
 
-  // Flatten house list (if needed)
   const allHouses = useMemo(() => {
     if (!houses?.houseDtoList) return [];
     return houses.houseDtoList;
   }, [houses]);
 
-  // Filtering logic (room and square)
   const filteredHouses = useMemo(() => {
     let filtered = allHouses;
-    if (roomFilter.length && !roomFilter.includes("all")) {
-      filtered = filtered.filter(house => roomFilter.includes(house.rooms));
-    }
-    if (squareFilter.startVal !== undefined && squareFilter.endVal !== undefined) {
-      filtered = filtered.filter(house =>
-        parseFloat(house.netoSquare) >= squareFilter.startVal &&
-        parseFloat(house.netoSquare) <= squareFilter.endVal
-      );
-    }
-    return filtered;
-  }, [allHouses, roomFilter, squareFilter]);
 
-  // Available count
+    if (typeFilter.length && !typeFilter.includes("all")) {
+      filtered = filtered.filter(house => typeFilter.includes(house.type));
+    }
+
+    return filtered;
+  }, [allHouses, typeFilter]);
+
   const available = filteredHouses.length;
 
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % buildingData.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + buildingData.length) % buildingData.length);
+  };
+
   return (
-    <div className="bg-bck pt-20">
-      <ProjectFilter
-        setFilterState={setFilterState}
-        available={available}
+    <div className="bg-bck h-screen w-full relative">
+      <div className="w-1/2 absolute bottom-28 left-24">
+        <HouseFilter />
+        <h1 className="text-white">available :{available}</h1>
+      </div>
+      {/* <ViewProject filteredHouses={filteredHouses} /> */}
+      <Houses
+        handleNext={handleNext}
+        handlePrevious={handlePrevious}
+        currentIndex={currentIndex}
+        filterState={reduxFilterState}
+        filteredHouses={filteredHouses}
       />
-      <ViewProject filteredHouses={filteredHouses} />
     </div>
   );
 };

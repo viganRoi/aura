@@ -13,10 +13,10 @@ const HouseHoverModal = ({ house, mousePosition }) => {
         }
         : {};
     return (
-        <div className='w-64 rounded-lg bg-white p-6 shadow-lg' style={style}>
+        <div className='w-64 rounded-lg bg-primary p-6 shadow-lg text-white' style={style}>
             <div className='flex flex-col gap-2 items-center'>
                 <h1 className='font-bold'>{title}</h1>
-                <div className='border-y border-grey-400 py-2 flex items-center justify-center gap-1'>
+                <div className='border-y border-secondary py-2 flex items-center justify-center gap-1'>
                     <span>Sqft: {sqft}m2</span>
                     <span>type: {type}</span>
                 </div>

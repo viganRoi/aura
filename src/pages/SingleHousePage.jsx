@@ -17,7 +17,7 @@ const SingleHousePage = () => {
 
   window.scrollTo({ top: 0 });
   return (
-    <div className="py-20">
+    <div className="">
       <SingleHouse />
       {/* <ApartmentsCarousel /> */}
     </div>

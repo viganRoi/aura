@@ -66,66 +66,60 @@ const AllApartmentsFilter = ({ setFilterState, available }) => {
               <button
                 name="a"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("a")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("a")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 A
               </button>
               <button
                 name="b"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("b")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("b")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 B
               </button>
               <button
                 name="c"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("c")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("c")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 C
               </button>
               <button
                 name="d"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("d")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("d")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 D
               </button>
               <button
                 name="e"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("e")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("e")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 E
               </button>
               <button
                 name="f"
                 onClick={handleBuildingChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  buildingFilter.includes("f")
+                className={`px-4 py-2 rounded-full border border-gold ${buildingFilter.includes("f")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 F
               </button>
@@ -137,44 +131,40 @@ const AllApartmentsFilter = ({ setFilterState, available }) => {
               <button
                 name="1"
                 onClick={handleRoomChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  roomFilter.includes("1")
+                className={`px-4 py-2 rounded-full border border-gold ${roomFilter.includes("1")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 1 + 1
               </button>
               <button
                 name="2"
                 onClick={handleRoomChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  roomFilter.includes("2")
+                className={`px-4 py-2 rounded-full border border-gold ${roomFilter.includes("2")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 2 + 1
               </button>
               <button
                 name="3"
                 onClick={handleRoomChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  roomFilter.includes("3")
+                className={`px-4 py-2 rounded-full border border-gold ${roomFilter.includes("3")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 3 + 1
               </button>
               <button
                 name="penthouse"
                 onClick={handleRoomChange}
-                className={`px-4 py-2 rounded-full border border-gold ${
-                  roomFilter.includes("penthouse")
+                className={`px-4 py-2 rounded-full border border-gold ${roomFilter.includes("penthouse")
                     ? "bg-brand text-black"
                     : "bg-transparent text-white"
-                }`}
+                  }`}
               >
                 Penthouse
               </button>

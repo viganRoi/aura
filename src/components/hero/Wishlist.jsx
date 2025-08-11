@@ -19,7 +19,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="w-full min-h-[100vh] bg-black flex flex-col justify-center items-center text-white pt-4 pb-8 md:pb-24">
+    <div className="w-full min-h-[100vh] bg-bck flex flex-col justify-center items-center text-white pt-4 pb-8 md:pb-24">
       <div className="w-11/12 md:w-6/7 flex items-center justify-center flex-col">
         <button
           onClick={() => navigate(-1)}

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { AllApartments, AllApartmentsFilter } from '../components';
+import { HousesFilter, AllHouses } from '../components';
 import axios from 'axios';
 import { BASE_URL } from '../utils/consts';
 import { useSelector } from 'react-redux';
 import { getRegularRoomFilter, getRegularFloorFilter, getRegularSquareFilter } from '../features/filter/FilterSlice';
 
-const AllApartmentsPage = () => {
+const AllHousesPage = () => {
   window.scrollTo({ top: 0 })
   const [apartments, setApartments] = useState([]);
   const [filteredApartments, setFilteredApartments] = useState([]);
+  const [houses, setHouses] = useState([]);
+  const [filteredHouses, setFilteredHouses] = useState([]);
   const [filterState, setFilterState] = useState(false);
-  const [available, setAvailable] = useState([]);
-  const [totalAvailable, setTotalAvailable] = useState(0);
 
   const roomFilter = useSelector(getRegularRoomFilter);
   const floorFilter = useSelector(getRegularFloorFilter);
@@ -20,9 +20,22 @@ const AllApartmentsPage = () => {
   useEffect(() => {
     const fetchApartments = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/api/apartment/get/apartment`);
-        setApartments(response.data);
-        applyFilters(response.data);
+        const response = await axios.get(`${BASE_URL}/api/house/get/by-neighborhood?name=aura`);
+        let data = response.data.flatMap(b => b.apartmentList || []);
+        data = data.sort((a, b) => {
+          const parse = (str) => {
+            const match = str.match(/^([A-Za-z]+)(\d+)$/);
+            if (!match) return [str, 0];
+            return [match[1], parseInt(match[2], 10)];
+          };
+          const [buildingA, numA] = parse(a.name || '');
+          const [buildingB, numB] = parse(b.name || '');
+          if (buildingA < buildingB) return -1;
+          if (buildingA > buildingB) return 1;
+          return numA - numB;
+        });
+        setApartments(data);
+        applyFilters(data);
       } catch (error) {
         console.error('Error fetching apartments:', error);
       }
@@ -32,35 +45,13 @@ const AllApartmentsPage = () => {
   }, []);
 
   useEffect(() => {
-    const fetchAvailable = async () => {
-      try {
-        const responses = await Promise.all([
-          axios.get(`${BASE_URL}/api/apartment/count/apartments/building?bid=A`),
-          axios.get(`${BASE_URL}/api/apartment/count/apartments/building?bid=B`),
-          axios.get(`${BASE_URL}/api/apartment/count/apartments/building?bid=C`),
-          axios.get(`${BASE_URL}/api/apartment/count/apartments/building?bid=D`),
-        ]);
-        const combinedData = responses.map(res => res.data);
-        setAvailable(combinedData);
-
-        const total = combinedData.reduce((sum, count) => sum + count, 0);
-        setTotalAvailable(total);
-
-        applyFilters(apartments);
-      } catch (error) {
-        console.error('Error fetching AvailableNumber:', error);
-      }
-    };
-
-    fetchAvailable();
-  }, []);
-
-  useEffect(() => {
     applyFilters(apartments);
   }, [filterState, roomFilter, floorFilter, squareFilter]);
 
   const applyFilters = (apartments) => {
     let filtered = apartments;
+
+    filtered = filtered.filter(apartment => !apartment.isSold);
 
     if (roomFilter.length && !roomFilter.includes('all')) {
       filtered = filtered.filter(apartment => roomFilter.includes(apartment.rooms));
@@ -71,18 +62,18 @@ const AllApartmentsPage = () => {
     }
 
     if (squareFilter.startVal !== undefined && squareFilter.endVal !== undefined) {
-      filtered = filtered.filter(apartment => apartment.square >= squareFilter.startVal && apartment.square <= squareFilter.endVal);
+      filtered = filtered.filter(apartment => apartment.netoSquare >= squareFilter.startVal && apartment.netoSquare <= squareFilter.endVal);
     }
 
     setFilteredApartments(filtered);
   };
 
   return (
-    <div>
-      <AllApartmentsFilter setFilterState={setFilterState} available={filteredApartments.length} />
-      <AllApartments filteredApartments={filteredApartments} />
+    <div className='mt-30'>
+      <HousesFilter setFilterState={setFilterState} available={filteredApartments?.length} />
+      <AllHouses filteredHouses={filteredApartments} />
     </div>
   );
 };
 
-export default AllApartmentsPage;
+export default AllHousesPage;

@@ -132,7 +132,7 @@ const AdmHouseModal = () => {
     .catch((err) => alert("Failed to update: " + err));
 };
 
-  if (!currentHouse) return <div>Loading...</div>;
+  // if (!currentHouse) return <div>Loading...</div>;
 
   const style = {
     position: "absolute",

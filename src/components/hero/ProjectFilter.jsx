@@ -32,7 +32,7 @@ const ProjectFilter = ({ available }) => {
 
   // Modal filter content
   const filterContent = (
-    <div className="w-full h-full text-primary flex flex-col justify-between items-center gap-4 uppercase axiformaThin">
+    <div className="w-full h-full text-primary flex flex-col justify-between items-center gap-4 uppercase">
       <div className="w-full h-full flex flex-col gap-2 justify-between items-start">
         {/* Type */}
         <div className="flex flex-col items-start gap-1">
@@ -51,35 +51,6 @@ const ProjectFilter = ({ available }) => {
                 {type}
               </button>
             ))}
-          </div>
-        </div>
-        <div className="w-full border-t border-primary my-2" />
-        {/* Property Size */}
-        <div className="w-full flex flex-col items-start gap-1">
-          <h1 className="text-primary">
-            size(M<sup>2</sup>)
-          </h1>
-          <div className="w-full flex flex-col justify-between">
-            <div className="w-full">
-              <Slider
-                getAriaLabel={() => "Size range"}
-                value={[squareFilter.startVal, squareFilter.endVal]}
-                onChange={handleSizeChange}
-                shiftStep={1}
-                step={10}
-                min={minSquare}
-                max={maxSquare}
-                color="var(--brand2-color)"
-                sx={{
-                  color: "var(--brand2-color)",
-                  height: '1px',
-                  width: '100%',
-                }}
-              />
-            </div>
-            <p className="valky capitalize">
-              {squareFilter.startVal}m2 - {squareFilter.endVal}m2
-            </p>
           </div>
         </div>
         <div className="w-full border-t border-primary my-2" />
@@ -109,9 +80,9 @@ const ProjectFilter = ({ available }) => {
   );
 
   return (
-    <div className='w-full h-0 relative'>
+    <>
       <button
-        className="absolute right-24 z-100 px-8 py-2 bg-primary text-white rounded-full text-base"
+        className="absolute right-0 top-0 z-100 px-8 py-2 bg-primary text-white rounded-full text-base"
         onClick={() => setOpen(true)}
       >
         Filter
@@ -136,7 +107,7 @@ const ProjectFilter = ({ available }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 export { default as ProjectPage } from './ProjectPage'
-export { default as AllApartmentsPage } from './AllApartmentsPage'
+export { default as AllHousesPage } from './AllHousesPage'
 export { default as SingleHousePage } from './SingleHousePage'
 export { default as WishlistPage } from './WishlistPage'
 export { default as ConditionalLayout } from './ConditionalLayout'
