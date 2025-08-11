@@ -8,16 +8,15 @@ const HouseHoverModal = ({ house, mousePosition }) => {
             position: 'fixed',
             left: mousePosition.x - 125,
             top: mousePosition.y +30,
-            zIndex: 9999,
+            zIndex: 999999,
             pointerEvents: 'none',
         }
         : {};
     return (
         <div className='w-64 rounded-lg bg-primary p-6 shadow-lg text-white' style={style}>
-            <div className='flex flex-col gap-2 items-center'>
+            <div className='w-full flex flex-col gap-2 items-center'>
                 <h1 className='font-bold'>{title}</h1>
-                <div className='border-y border-secondary py-2 flex items-center justify-center gap-1'>
-                    <span>Sqft: {sqft}m2</span>
+                <div className='w-full border-y border-secondary py-2 flex items-center justify-center gap-1'>
                     <span>type: {type}</span>
                 </div>
             </div>

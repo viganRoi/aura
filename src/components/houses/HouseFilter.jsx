@@ -33,7 +33,7 @@ const HouseFilter = ({ available }) => {
                     className='w-full flex flex-col items-center gap-2 cursor-pointer'
                 >
                     <FaHouse
-                        className={`text-5xl ${typeFilter.includes(type) ? 'text-secondary scale-110' : 'text-primary'}`}
+                        className={`text-5xl ${typeFilter.includes(type) ? 'text-primary scale-110' : 'text-white'}`}
                     />
                     <h1 className='text-2xl'>Tipi {type}</h1>
                 </button>
