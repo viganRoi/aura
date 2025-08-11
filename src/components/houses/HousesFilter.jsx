@@ -18,7 +18,7 @@ const HousesFilter = ({ available }) => {
     dispatch(handleRegularFilterType(type));
   };
 
-  const types = [180, 220, 240, 260, 300];
+  const types = ['180', '220', '240', '260', '300'];
 
   return (
     <div className="w-full h-full pt-12 md:py-24 flex items-center justify-center bg-bckS text-white">
