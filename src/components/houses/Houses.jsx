@@ -3,13 +3,20 @@ import { useSelector } from "react-redux";
 import { imagePath } from "../../utils/consts";
 import { getRegularFilterType } from "../../features/filter/FilterSlice";
 import { useState, useMemo } from "react";
-import HouseHoverModal from "./HouseHoverModal";
+import ContextMenu from "../contextMenu/ContextMenu";
+import AdmHouseModal from "../admin/apartments/AdmHouseModal";
+import HouseHoverModal from './HouseHoverModal';
 
 const Houses = ({
   houses
 }) => {
   const navigate = useNavigate();
   const typeFilter = useSelector(getRegularFilterType);
+  const [contenxtMenu, setContextMenu] = useState({
+    open: false,
+    anchorEl: null,
+    data: {},
+  });
   const [currentIndex, setCurrentIndex] = useState(1);
   const filterState = false;
 
@@ -57,8 +64,13 @@ const Houses = ({
     }));
   };
 
-  const handleContextMenu = (e) => {
+  const handleContextMenu = (e, house) => {
     e.preventDefault();
+    setContextMenu({
+      open: true,
+      anchorEl: e.currentTarget,
+      data: house,
+    });
   };
 
   const getSvgHeight = () => "100%";
@@ -203,6 +215,12 @@ const Houses = ({
           mousePosition={{ x: popup.x, y: popup.y }}
         />
       )}
+      <ContextMenu
+        menu={contenxtMenu}
+        setMenu={setContextMenu}
+        setPopup={setPopup}
+      />
+      <AdmHouseModal />
     </div>
   );
 };
