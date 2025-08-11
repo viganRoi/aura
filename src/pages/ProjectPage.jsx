@@ -34,11 +34,11 @@ const ProjectPage = () => {
   const available = filteredHouses.length;
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % buildingData.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % houses.length);
   };
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + buildingData.length) % buildingData.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + houses.length) % houses.length);
   };
 
   return (
@@ -53,7 +53,7 @@ const ProjectPage = () => {
         handlePrevious={handlePrevious}
         currentIndex={currentIndex}
         filterState={reduxFilterState}
-        filteredHouses={filteredHouses}
+        filteredHouses={allHouses}
       />
     </div>
   );

@@ -9,6 +9,7 @@ const HouseSvgExtractor = ({ show }) => {
   const [svgCode, setSvgCode] = useState('');
   const [numberOfFloors, setNumberOfFloors] = useState(1);
   const [neighborhood, setNeighborhood] = useState('');
+  const [side, setSide] = useState(1)
   const [extractedHouses, setExtractedHouses] = useState([]);
 
   const handleSvgCodeChange = (e) => setSvgCode(e.target.value);
@@ -63,6 +64,7 @@ const HouseSvgExtractor = ({ show }) => {
         imageTransform,
         image2dUrl: '',
         image3dUrl: '',
+        side,
         pdfUrl: '',
         orientationImageUrl: '',
         isSold: false,
@@ -100,6 +102,7 @@ const HouseSvgExtractor = ({ show }) => {
       <textarea
         rows={10}
         cols={60}
+        style={{border: '1px solid #DDD', borderRadius: '10px', padding: '5px'}}
         placeholder="Ngjit SVG këtu..."
         value={svgCode}
         onChange={handleSvgCodeChange}
@@ -124,10 +127,19 @@ const HouseSvgExtractor = ({ show }) => {
             onChange={(e) => setNeighborhood(e.target.value)}
           />
         </label>
+        <label style={{border: '1px solid #DDD', width: 'fit-content', padding: '5px'}}>
+          Ana (Side):
+          <input
+            type="number"
+            value={side}
+            style={{marginLeft: '5px'}}
+            onChange={(e) => setSide(parseInt(e.target.value))}
+          />
+        </label>
       </div>
 
-      <button onClick={extractSvgElements} style={{ marginTop: 10 }}>
-        Ekstraho Shtëpitë
+      <button onClick={extractSvgElements} style={{ marginTop: 10, border: 'none', backgroundColor: '#4CAF50', color: 'white', padding: '10px 20px', cursor: 'pointer', borderRadius: 10 }}>
+        Ekstrakto Shtëpitë
       </button>
 
       <div style={{ marginTop: 20 }}>
