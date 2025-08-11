@@ -55,7 +55,7 @@ const Navbar = () => {
             </NavLink>
               <NavLink
                 to="/wishlist"
-                className="p-3 text-sm md:text-base uppercase transition border text-nowrap bg-primary rounded-full"
+                className="p-3 text-sm md:text-base uppercase transition border border-secondary text-nowrap bg-primary rounded-full"
               >
                 {wishListItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 sm:top-[-10px] sm:right-[-5px] bg-red-500 text-[10px] sm:text-xs rounded-full w-4 h-4 flex items-center justify-center">

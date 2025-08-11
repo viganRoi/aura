@@ -1,77 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { HousesFilter, AllHouses } from '../components';
 import axios from 'axios';
 import { BASE_URL } from '../utils/consts';
 import { useSelector } from 'react-redux';
-import { getRegularRoomFilter, getRegularFloorFilter, getRegularSquareFilter } from '../features/filter/FilterSlice';
+import { getRegularFilterType } from '../features/filter/FilterSlice';
 
 const AllHousesPage = () => {
-  window.scrollTo({ top: 0 })
-  const [apartments, setApartments] = useState([]);
-  const [filteredApartments, setFilteredApartments] = useState([]);
+  const typeFilter = useSelector(getRegularFilterType);
   const [houses, setHouses] = useState([]);
   const [filteredHouses, setFilteredHouses] = useState([]);
-  const [filterState, setFilterState] = useState(false);
 
-  const roomFilter = useSelector(getRegularRoomFilter);
-  const floorFilter = useSelector(getRegularFloorFilter);
-  const squareFilter = useSelector(getRegularSquareFilter);
-
+  // Fetch and prepare data
   useEffect(() => {
-    const fetchApartments = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/api/house/get/by-neighborhood?name=aura`);
-        let data = response.data.flatMap(b => b.apartmentList || []);
-        data = data.sort((a, b) => {
-          const parse = (str) => {
-            const match = str.match(/^([A-Za-z]+)(\d+)$/);
-            if (!match) return [str, 0];
-            return [match[1], parseInt(match[2], 10)];
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const fetchHouses = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/house/get/by-neighborhood?name=aura`
+      );
+
+      // Ensure structure exists
+      const data = Array.isArray(response.data.houseDtoList)
+        ? response.data.houseDtoList
+        : [];
+
+        // Sort by building letter + number
+        data.sort((a, b) => {
+          const parseName = (str) => {
+            const match = str?.match(/^([A-Za-z]+)(\d+)$/);
+            return match ? [match[1], parseInt(match[2], 10)] : [str || '', 0];
           };
-          const [buildingA, numA] = parse(a.name || '');
-          const [buildingB, numB] = parse(b.name || '');
+          const [buildingA, numA] = parseName(a.name);
+          const [buildingB, numB] = parseName(b.name);
+
           if (buildingA < buildingB) return -1;
           if (buildingA > buildingB) return 1;
           return numA - numB;
         });
-        setApartments(data);
-        applyFilters(data);
+
+        setHouses(data);
+        applyFilters(data, typeFilter);
       } catch (error) {
-        console.error('Error fetching apartments:', error);
+        console.error('Error fetching houses:', error);
       }
     };
 
-    fetchApartments();
+    fetchHouses();
   }, []);
 
+  // Apply filters whenever typeFilter or houses change
   useEffect(() => {
-    applyFilters(apartments);
-  }, [filterState, roomFilter, floorFilter, squareFilter]);
+    applyFilters(houses, typeFilter);
+  }, [typeFilter, houses]);
 
-  const applyFilters = (apartments) => {
-    let filtered = apartments;
+  const applyFilters = useCallback((housesList, types) => {
+    if (!Array.isArray(housesList)) return;
 
-    filtered = filtered.filter(apartment => !apartment.isSold);
+    let filtered = housesList.filter(h => !h.isSold);
 
-    if (roomFilter.length && !roomFilter.includes('all')) {
-      filtered = filtered.filter(apartment => roomFilter.includes(apartment.rooms));
+    if (types.length && !types.includes('all')) {
+      filtered = filtered.filter(h => types.includes(h.type));
     }
 
-    if (floorFilter.startVal !== undefined && floorFilter.endVal !== undefined) {
-      filtered = filtered.filter(apartment => apartment.floorNumber >= floorFilter.startVal && apartment.floorNumber <= floorFilter.endVal);
-    }
-
-    if (squareFilter.startVal !== undefined && squareFilter.endVal !== undefined) {
-      filtered = filtered.filter(apartment => apartment.netoSquare >= squareFilter.startVal && apartment.netoSquare <= squareFilter.endVal);
-    }
-
-    setFilteredApartments(filtered);
-  };
+    setFilteredHouses(filtered);
+  }, []);
 
   return (
-    <div className='mt-30'>
-      <HousesFilter setFilterState={setFilterState} available={filteredApartments?.length} />
-      <AllHouses filteredHouses={filteredApartments} />
+    <div className="mt-30">
+      <HousesFilter available={filteredHouses.length} />
+      <AllHouses filteredHouses={filteredHouses} />
     </div>
   );
 };

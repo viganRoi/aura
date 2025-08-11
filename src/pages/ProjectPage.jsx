@@ -44,8 +44,7 @@ const ProjectPage = () => {
   return (
     <div className="bg-bck h-screen w-full relative">
       <div className="w-1/2 absolute bottom-28 left-24">
-        <HouseFilter />
-        <h1 className="text-white">available :{available}</h1>
+        <HouseFilter available={available}/>
       </div>
       {/* <ViewProject filteredHouses={filteredHouses} /> */}
       <Houses
