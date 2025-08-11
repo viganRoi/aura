@@ -67,7 +67,7 @@ const AllHousesPage = () => {
   }, []);
 
   return (
-    <div className="mt-30">
+    <div className="mt-12 bg-bckS">
       <HousesFilter available={filteredHouses.length} />
       <AllHouses filteredHouses={filteredHouses} />
     </div>

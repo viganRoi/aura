@@ -167,7 +167,7 @@ const handlePrevious = () => {
                   },
                   onClick: () => {
                     if (isClickable) {
-                      navigate(`/apartments/${apartment.id}`);
+                      navigate(`/houses/${apartment.id}`);
                     }
                   },
                 };
