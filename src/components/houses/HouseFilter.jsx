@@ -14,15 +14,15 @@ const HouseFilter = ({ available }) => {
     const location = useLocation();
     const typeFilter = useSelector(getRegularFilterType);
 
-    useEffect(() => {
-        dispatch(handleRegularFilterReset());
-    }, [location.pathname, dispatch]);
+    // useEffect(() => {
+    //     dispatch(handleRegularFilterReset());
+    // }, [location.pathname, dispatch]);
 
     const handleTypeClick = (type) => {
         dispatch(handleRegularFilterType(type));
     };
 
-    const types = [180, 220, 240, 260, 300];
+    const types = ['180', '220', '240', '260', '300'];
 
     return (
         <div className="w-full absolute z-100 text-white rounded-full text-base flex items-center justify-center gap-4">

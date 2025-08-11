@@ -112,14 +112,14 @@ const FilterSlice = createSlice({
                 state.regularFilter.type = ['all'];
             }
             if(state.regularFilter.type.includes(action.payload)) {
-                state.regularFilter.type = state.regularFilter.type.filter((item) => !item.includes(action.payload));
+                state.regularFilter.type = state.regularFilter.type.filter(item => item !== action.payload);
                 if(state.regularFilter.type.length === 0) {
                     state.regularFilter.type.push('all');
                 }
             }
             else {
                 state.regularFilter.type.push(action.payload);
-                state.regularFilter.type = state.regularFilter.type.filter((item) => !item.includes('all'));
+                state.regularFilter.type = state.regularFilter.type.filter(item => item !== 'all');
             }
         },
         handleRegularFilterState(state, action) {
