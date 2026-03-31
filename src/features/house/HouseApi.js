@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../utils/consts";
 
-const neighborhoodName = 'aura'; // Replace with actual neighborhood name or parameter  
+const neighborhoodName = 'palase'; // Replace with actual neighborhood name or parameter  
 const API = {
     fetchAllHouses: `${BASE_URL}/api/house`,
     fetchAllHousesByNeighborhood: (name) => `${BASE_URL}/api/house/get/by-neighborhood?name=${name}`,

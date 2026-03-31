@@ -6,6 +6,7 @@ import { useState, useMemo } from "react";
 import ContextMenu from "../contextMenu/ContextMenu";
 import AdmHouseModal from "../admin/apartments/AdmHouseModal";
 import HouseHoverModal from './HouseHoverModal';
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const Houses = ({
   houses
@@ -80,15 +81,15 @@ const Houses = ({
       <div className="w-11/12 h-0 absolute z-[99999] flex justify-between gap-4">
         <button
           onClick={handlePrevious}
-          className="h-12 w-12 bg-primary text-white rounded-full"
+          className="h-12 w-12 bg-primary rounded-full flex justify-center items-center"
         >
-          Prev
+          <SlArrowLeft fontSize="20" color="var(--color-secondary)" />
         </button>
         <button
           onClick={handleNext}
-          className="h-12 w-12 bg-primary text-white rounded-full"
+          className="h-12 w-12 bg-primary rounded-full flex justify-center items-center"
         >
-          Next
+          <SlArrowRight fontSize="20" color="var(--color-secondary)" />
         </button>
       </div>
       <div

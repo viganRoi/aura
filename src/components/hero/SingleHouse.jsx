@@ -68,7 +68,7 @@ const SingleHouse = () => {
       <div className="w-full flex flex-col md:flex-row h-full justify-center bg-white items-start ">
         <div className="w-5/24 h-full bg-bckS flex flex-col gap-36 px-4">
           <div className="w-full flex flex-col items-start gap-4 mt-4">
-            <img src="/assets/images/buildings/top.jpg" alt="" className="rounded-lg h-42 w-full object-cover" />
+            <img src="/projektet/assets/images/buildings/top.jpg" alt="" className="rounded-lg h-42 w-full object-cover" />
             <h1 className="text-3xl mb-12">{name}</h1>
             <div className="py-6 flex justify-start w-full border-b py-4 border-secondary text-sm md:text-lg text-primary items-center gap-2">
               <FaRegBuilding />
@@ -145,10 +145,10 @@ const SingleHouse = () => {
                 //     ? `${homepage}${planmetricImageUrl}${name}-1floor.jpg`
                 //     : `${homepage}${planmetricImageUrl}${name}-base.png`
                 active === "2"
-                  ? `/assets/images/renderat/b.png`
+                  ? `/projektet/assets/images/renderat/b.png`
                   : active === "1"
-                    ? `/assets/images/renderat/1.png`
-                    : `/assets/images/renderat/b.png`
+                    ? `/projektet/assets/images/renderat/1.png`
+                    : `/projektet/assets/images/renderat/b.png`
               }
                 alt={
                   active === "2"

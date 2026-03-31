@@ -17,7 +17,7 @@ const AllHousesPage = () => {
     const fetchHouses = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/api/house/get/by-neighborhood?name=aura`
+        `${BASE_URL}/api/house/get/by-neighborhood?name=palase`
       );
 
       // Ensure structure exists
