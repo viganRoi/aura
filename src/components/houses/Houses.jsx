@@ -114,7 +114,7 @@ const Houses = ({
             // viewBox={building.viewBoxStyle}
             x="0px"
             y="0px"
-            viewBox="0 0 1920 1080"
+            viewBox="0 0 1080 1080"
             width="100%"
             xmlSpace="preserve"
             preserveAspectRatio="xMidYMid slice"
@@ -128,8 +128,8 @@ const Houses = ({
               // height={building.imgHeight}
              
             width="1938"
-   height="2140"
-   transform="matrix(0.5068 0 0 0.5069 48.9554 -2.3416)"
+            height="2140"
+            transform="matrix(0.5068 0 0 0.5069 48.9554 -2.3416)"
             />
             {filteredHouses?.map((apartment) => {
               // Check only typeFilter
