@@ -126,9 +126,10 @@ const Houses = ({
               alt=""
               // width={building.imgWidth}
               // height={building.imgHeight}
-              width="100%"
-              height="100%"
-            // transform={'houses'}
+             
+            width="1938"
+   height="2140"
+   transform="matrix(0.5068 0 0 0.5069 48.9554 -2.3416)"
             />
             {filteredHouses?.map((apartment) => {
               // Check only typeFilter
