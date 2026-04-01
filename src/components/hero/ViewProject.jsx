@@ -1,132 +1,110 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { imagePath } from "../../utils/consts";
-import "./style.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllHousesByNeighborhood } from "../../features/house/HouseApi";
-import { getHouseData } from "../../features/house/HouseSlice";
-import { HouseHoverModal } from "../";
-import ContextMenu from "../contextMenu/ContextMenu";
-import AdmHouseModal from "../admin/apartments/AdmHouseModal";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { buildings } from "../../utils/server";
 
-const ViewProject = () => {
+  const ViewProject = () => {
   const navigate = useNavigate();
-  const ref = useRef(null);
-  const dispatch = useDispatch();
-  const houses = useSelector(getHouseData);
   const isSmallDev = window.innerWidth < 700;
-  const [popup, setPopup] = useState({
-    anchorEl: null,
-    open: false,
-    data: {}
-  });
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredId, setHoveredId] = useState(null);
 
-  const [menu, setMenu] = useState({
-    open: false,
-    anchorEl: null,
-    data: {}
-  });
-
-  const getSvgHeight = () => {
-    return "100%";
-  };
-
-  useEffect(() => {
-    dispatch(fetchAllHousesByNeighborhood())
-  }, [dispatch]);
-
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
-  const houseList = houses?.houseDtoList || [];
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % buildings.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + buildings.length) % buildings.length
+    );
+  };
+
+  const currentBuilding = buildings[currentIndex];
+
+  const getSvgHeight = () => {
+    return "100%";
+  };
 
   return (
-    <div className="relative w-full h-[110vh] flex flex-col items-center justify-center">
-      <div
-        className="absolute md:relative w-full flex items-center justify-center"
-        style={{ height: getSvgHeight() }}
-      >
+    <div className="relative bg-brand w-full h-[110vh] md:min-h-[1080px] flex flex-col items-center justify-center">
+      <div className="relative bg-brand w-full h-full flex flex-col justify-center items-center overflow-x-auto md:overflow-x-hidden">
         <div
-          ref={ref}
-          style={{
-            transition: "opacity 0.1s ease-in-out",
-            height: getSvgHeight(),
-            width: isSmallDev ? "350%" : "100%",
-            position: "absolute",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            overflow: isSmallDev ? "auto" : "hidden",
-            top: 0,
-            left: 0,
-            zIndex: 1,
-          }}
+          className="absolute md:relative w-full flex items-center justify-center"
+          style={{ height: getSvgHeight() }}
         >
-          <svg
-            x="0px"
-            y="0px"
-            viewBox="0 0 1920 1080"
-            width="100%"
-            xmlSpace="preserve"
-            preserveAspectRatio="xMidYMid slice"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            style={{
+              transition: "opacity 0.1s ease-in-out",
+              height: getSvgHeight(),
+              width: isSmallDev ? "250%" : "100%",
+              position: "absolute",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              overflow: isSmallDev ? "auto" : "hidden",
+              top: 0,
+              left: 0,
+              zIndex: 1,
+            }}
           >
-            <image
-              href={`${imagePath}2.jpg`}
-              alt={houses?.neighborhoodName}
-              width="100%"
-              height="100%"
-            />
-            {houseList.map((point) => (
-              <path
-                key={point.id}
-                onContextMenu={(e) => {
-                  e.preventDefault();
-                  setMenu({
-                    open: true,
-                    anchorEl: e.currentTarget,
-                    data: point,
-                  });
-                }}
-                className={point.type === "commercial" ? 'sold' : 'available'}
-                d={point.points}
-                onMouseEnter={(e) => {
-                  e.preventDefault();
-                  setPopup({
-                    data: {
-                      title: point.name,
-                      navigateTo: () => navigate(`/house/${point.id}`),
-                      sqft: point.totalSquare,
-                      type: point.type,
-                    },
-                    open: true,
-                    x: e.clientX + 10,
-                    y: e.clientY + 10,
-                  });
-                }}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={() => {
-                  setPopup({
-                    x: 0,
-                    y: 0,
-                    open: false,
-                    data: {},
-                  });
-                }}
-                onClick={() => navigate(`/houses/${point.id}`)}
+            <svg
+              x="0px"
+              y="0px"
+              viewBox="0 0 1190.6 841.9"
+              height={isSmallDev ? "" : "100%"}
+              width={"100%"}
+              xmlSpace="preserve"
+              preserveAspectRatio="xMidYMid slice"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <image
+                href={currentBuilding.image}
+                alt={currentBuilding.name}
+                width="100%"
+                height="100%"
               />
-            ))}
-          </svg>
+              {currentBuilding.points.map((point) => (
+                <path
+                  key={point.id}
+                  className={
+                    [""].includes(point.name)
+                      ? "sold"
+                      : "available"
+                  }
+                  d={point.path}
+                  onMouseEnter={() => setHoveredId(point.id)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => navigate(`/${point.name}`)}
+                  style={{
+                    cursor: 'pointer'
+                  }}
+                />
+              ))}
+            </svg>
+          </div>
         </div>
       </div>
-      {popup.open && <HouseHoverModal house={popup.data} mousePosition={mousePosition} />}
-      <ContextMenu menu={menu} setMenu={setMenu} />
-      <AdmHouseModal />
+      <div className="absolute w-11/12 h-0 flex justify-between p-4 z-10">
+        <button
+          onClick={handlePrevious}
+          className="bg-primary transition-all duration-300 hover:opacity-80 w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center"
+        >
+          <SlArrowLeft color="var(--color-secondary)" />
+        </button>
+        <button 
+          onClick={handleNext}
+          className="bg-primary transition-all duration-300  hover:opacity-80 w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center"
+        >
+          <SlArrowRight color="var(--color-secondary)" />
+        </button>
+      </div>
     </div>
   );
 };

@@ -12,13 +12,15 @@ import SvgExtractor from "./pages/SvgExtractor";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import AdminPage from "./pages/admin/AdminPage";
 import HouseSvgExtractor from "./pages/HouseSvgExtractor";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <Router>
       <ConditionalLayout>
         <Routes>
-          <Route path="/" element={<ProjectPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/villas" element={<ProjectPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/svg-extrator" element={<SvgExtractor />} />
           <Route path="/house/svg-extractor" element={<HouseSvgExtractor />} />

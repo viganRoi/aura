@@ -18,7 +18,7 @@
   --color-black: #000;
   --color-white: #fff;
   --color-primary: #F9F0EB;
-  --color-secondary: #229bd3;
+  --color-secondary: #134b64;
   --color-secondaryD: #D3A373;
   --color-tertiary: #493329;
   --color-txt: #B08968;
@@ -81,7 +81,7 @@ button{
 
 .available {
   /* fill: #0e37524d; */
-  fill: #119b244d;
+  fill: #1c84c959;
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease 0s;
@@ -96,7 +96,7 @@ button{
 }
 
 .filtered {
-  fill: #21434B;
+  fill: #1c84c959;
   cursor: pointer;
   outline: none;
   transition: all 0.4s ease 0s;
@@ -111,13 +111,12 @@ button{
 }
 
 .filtered:hover {
-  fill: #21434B;
+  fill: #1c84c959;
   opacity: 0.9;
 }
 
 .available:hover {
-  /* fill: #0E3752; */
-  fill: #10771ea2;
+  fill: #509ccf59;
   opacity: 0.8;
 }
 

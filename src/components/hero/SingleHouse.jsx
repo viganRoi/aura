@@ -1,33 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { homepage, pdfPath, planmetricImageUrl } from "../../utils/consts";
-import { useNavigate } from "react-router-dom";
-import {
-  addToWishlist,
-  getWishlistCount,
-  getWishlistModalData,
-  handleWishlistData,
-  isProductInWishlist,
-  removeFromWishlist,
-} from "../../features/wishList/WishlistSlice";
-import { PriceCard } from "../";
-import "./style.css";
+import { useRef } from 'react';
 import { SlArrowLeft } from "react-icons/sl";
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { FaRegBuilding } from "react-icons/fa";
+import "./style.css";
+import { pdfPath } from "../../utils/consts";
 
-const SingleHouse = () => {
-  const isSmallDev = window.innerWidth < 700;
-  const [isPriceCardVisible, setIsPriceCardVisible] = useState(false);
-  const [active, setActive] = useState("2d");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const house = useSelector((state) => state.HouseSlice.house);
-  const wishlist = useSelector(getWishlistModalData);
-  const isInWishlist = useSelector((state) =>
-    house ? isProductInWishlist(state, house.id) : false
-  );
-  const isHeartActive = house && wishlist.some((item) => item.id === house.id);
+const SingleHouse = ({ house, active, setActive, navigate }) => {
+  const imageRefs = useRef([]);
+  const scrollContainerRef = useRef(null);
 
   if (!house) {
     return <div className="w-full h-screen flex items-center justify-center">Loading...</div>;
@@ -38,150 +16,124 @@ const SingleHouse = () => {
     pdfUrl,
     totalSquare,
     numberOfRooms,
-    name,
     totalNetoSquare,
-    vtourUrl,
   } = house;
 
-  const togglePriceCard = () => {
-    setIsPriceCardVisible(!isPriceCardVisible);
-  };
+  const images = [
+    `/projektet/assets/images/renderat/Villas/T3BDV-2D.png`,
+    `/projektet/assets/images/renderat/Villas/T3BV-2D.png`,
+    `/projektet/assets/images/renderat/Villas/T4BV-2D.png`,
+    `/projektet/assets/images/renderat/Villas/WVD-2D.png`,
+  ];
 
-  const toggleWishlist = () => {
-    if (isHeartActive) {
-      dispatch(removeFromWishlist(house.id));
-    } else {
-      dispatch(addToWishlist(house));
+  const buttons = [
+    { label: "1" },
+    { label: "2" },
+    { label: "3" },
+    { label: "4" },
+  ];
+
+  const scrollToImage = (index) => {
+    const imageIndex = parseInt(index) - 1;
+    const imageElement = imageRefs.current[imageIndex];
+    if (imageElement && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const imageRect = imageElement.getBoundingClientRect();
+      const scrollTop = imageRect.top - containerRect.top + container.scrollTop;
+      container.scrollTo({ top: scrollTop, behavior: 'smooth' });
     }
   };
 
-
-  const buttons = [
-    { label: "2" },
-    { label: "1" },
-    { label: "b" },
-  ];
-
+  const handleButtonClick = (label) => {
+    setActive(label);
+    scrollToImage(label);
+  };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-start text-primary overflow-x-hidden">
-      <div className="w-full flex flex-col md:flex-row h-full justify-center bg-white items-start ">
-        <div className="w-5/24 h-full bg-bckS flex flex-col gap-36 px-4">
-          <div className="w-full flex flex-col items-start gap-4 mt-4">
-            <img src="/projektet/assets/images/buildings/top.jpg" alt="" className="rounded-lg h-42 w-full object-cover" />
-            <h1 className="text-3xl mb-12">{name}</h1>
-            <div className="py-6 flex justify-start w-full border-b py-4 border-secondary text-sm md:text-lg text-primary items-center gap-2">
-              <FaRegBuilding />
-              <h2 className="font-semibold">Tipi: {type}</h2>
-            </div>
-            <div className="py-6 flex justify-start w-full border-b py-4 border-secondary text-sm md:text-lg text-primary items-center gap-2">
-              <FaRegBuilding />
-              <h2 className="font-semibold">Dhoma: {numberOfRooms}</h2>
-            </div>
-            <div className="py-6 flex justify-start w-full border-b py-4 border-secondary text-sm md:text-lg text-primary items-center gap-2">
-              <FaRegBuilding />
-              <h2 className="font-semibold">Siperfaqja: {totalSquare}</h2>
-            </div>
-            <div className="py-6 flex justify-start w-full border-b py-4 border-secondary text-sm md:text-lg text-primary items-center gap-2">
-              <FaRegBuilding />
-              <h2 className="font-semibold">Siperfaqja neto: {totalNetoSquare}m<sup>2</sup></h2>
-            </div>
-          </div>
-          <div className="w-full flex flex-row-reverse md:flex-col gap-4">
-            <button className="w-full px-4 py-2 border border-white bg-primary text-white  hover:bg-secondary hover:border-secondary transition-all duration-500 rounded-full">
-              Rezervo një takim
-            </button>
-            <button
-              onClick={() => window.open(`${pdfPath}${pdfUrl}`, "_blank")}
-              className="w-full px-4 py-2 border border-secondary text-secondary hover:bg-primary hover:text-white transition-all duration-500 rounded-full"
-            >
-              Shkarko PDF
-            </button>
-          </div>
+    <div className='w-full h-full bg-white flex flex-col items-center justify-center'>
+      {/* <div className="h-76 w-full relative">
+        <img src="/projektet/assets/images/hero/Palasa-Prerjet.png" alt="" className="w-full h-full object-center object-cover absolute" />
+        <div className="w-full h-full bg-black/60 absolute top-0 left-0 flex flex-col items-center justify-center gap-4 text-white">
+          <h1 className="text-5xl">Premium Villa</h1>
+          <h1 className="text-2xl font-semibold">{house?.name} - {house?.totalSquare.toFixed(2)}m<sup>2</sup></h1>
         </div>
-        <div className="w-18/24 h-full bg-bck flex flex-col justify-start items-center gap-2">
-          <div className="w-full flex flex-col md:flex-row justify-between items-center gap-2 p-4">
-            <div className="flex gap-4 justify-center  items-center">
-              <button
-                onClick={() => navigate(-1)}
-                className="border border-secondary text-white rounded-full h-10 w-10 flex items-center justify-center"
-              >
-                <SlArrowLeft className="text-xl" />
-              </button>
-              <h3 className="text-white text-nowraptext-sm md:text-lg">
-                Kthehu Pas
-              </h3>
+      </div> */}
+      <div className="w-11/12 h-screen z-1 flex flex-col-reverse md:flex-row items-center scroller-thin">
+        <div className="h-screen text-secondary flex flex-col items-center justify-center gap-4 pb-8 md:pb-0 w-full md:w-3/12 md:sticky md:top-0 h-fit">
+          <div className='hidden w-full md:flex items-center gap-4 pb-8'>
+            <button onClick={() => navigate(-1)} className=' cursor-pointer bg-secondary/60 hover:bg-secondary transition-all duration-300 hover:text-bck w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center'>
+              <SlArrowLeft color='#fff' />
+            </button>
+            <h1 className='valky text-secondary text-lg'>Kthehu Pas</h1>
+          </div>
+          <div className='w-full flex flex-col items-center gap-4 py-4'>
+            <div className='hidden md:flex w-full items-start justify-between gap-4 py-4'>
+              <p className='text-6xl valky'>{totalNetoSquare}m<sup>2</sup></p>
             </div>
-            <div className="flex justify-center items-center gap-2">
-              <button className="w-full text-nowrap px-4 py-2 border border-white bg-primary text-white  hover:bg-secondary hover:border-secondary transition-all duration-500 rounded-full">
-                3D Tour
-              </button>
-              <button className="w-full px-4 py-2 border border-white bg-primary text-white  hover:bg-secondary hover:border-secondary transition-all duration-500 rounded-full">
-                Gallery
-              </button>
-              <button
-                className={`p-2 text-sm md:text-base uppercase transition border text-nowrap bg-primary rounded-full border border-white`}
-                onClick={toggleWishlist}
-              >
-                {isInWishlist ?
-                  <IoIosHeart className="fill-secondary text-lg sm:text-2xl" />
-                  :
-                  <IoIosHeartEmpty className="fill-secondary text-lg sm:text-2xl" />
-                }
-              </button>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <p className='text-lg md:text-xl axiforma-thin'>Tipi</p>
+              <p className='text-xl md:text-2xl valky'>{type}</p>
+            </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <p className='text-lg md:text-xl axiforma-thin'>Dhoma</p>
+              <p className='text-xl md:text-2xl valky'>{numberOfRooms}</p>
+            </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <p className='text-lg md:text-xl axiforma-thin'>Siperfaqja</p>
+              <p className='text-xl md:text-2xl valky'>{totalSquare}m<sup>2</sup></p>
+            </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <p className='text-lg md:text-xl axiforma-thin'>Siperfaqja neto</p>
+              <p className='text-xl md:text-2xl valky'>{totalNetoSquare}m<sup>2</sup></p>
             </div>
           </div>
-          <div className="w-full flex justify-start md:justify-center items-center gap-4 "></div>
-          <div className="w-full relative flex justify-center items-center">
-            {active === "360" ? (
-              <div className="h-full w-full bg-tertiary relative text-black">
-                <iframe width="100%" height="100%" frameborder="10" allow="xr-spatial-tracking; gyroscope; accelerometer" src={vtourUrl}></iframe>
-              </div>
-            ) : (
-              <img src={
-                // active === "2"
-                //   ? `${homepage}${planmetricImageUrl}${name}-2floor.jpg`
-                //   : active === "1"
-                //     ? `${homepage}${planmetricImageUrl}${name}-1floor.jpg`
-                //     : `${homepage}${planmetricImageUrl}${name}-base.png`
-                active === "2"
-                  ? `/projektet/assets/images/renderat/b.png`
-                  : active === "1"
-                    ? `/projektet/assets/images/renderat/1.png`
-                    : `/projektet/assets/images/renderat/b.png`
-              }
-                alt={
-                  active === "2"
-                    ? "2floor"
-                    : active === "1"
-                      ? "1floor"
-                      : "base"
-                }
-                className="h-[500px] md:h-[700px] object-contain text-black"
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-            )}
-          </div>
+          <button className="relative uppercase inline-flex items-center justify-center w-full px-12 py-3 overflow-hidden axiforma-thin text-white bg-secondary rounded-lg group">
+            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-tertiary rounded-full group-hover:w-124 group-hover:h-124"></span>
+            <span className="relative">Rezervo një takim</span>
+          </button>
+          <button
+            onClick={() => window.open(`${pdfPath}${pdfUrl}`, "_blank")}
+            className="relative uppercase inline-flex items-center justify-center w-full px-12 py-3 overflow-hidden axiforma-thin text-secondary bg-transparent rounded-lg border border-[#0E375240]">
+            PDF
+          </button>
         </div>
-        <div className="w-1/24 h-full bg-bckS flex flex-col items-center px-2 pt-4">
-          {buttons.map((btn) => (
-            <button
-              key={btn.label}
-              onClick={() => setActive(btn.label)}
-              className={`w-full p-3 text-sm md:text-base uppercase transition  rounded-full
-                ${active === btn.label
+        <div className='w-full md:w-9/12 h-screen flex flex-col md:items-center justify-start relative'>
+          <div className="z-1000 absolute top-10 md:top-18 bg-gray-200 rounded-full flex items-center text-sm font-medium">
+            {buttons.map((btn) => (
+              <button
+                key={btn.label}
+                onClick={() => handleButtonClick(btn.label)}
+                className={`px-3 md:px-6 py-2 md:py-4 transition ${active === btn.label
                   ? "bg-secondary text-white rounded-full"
-                  : "text-white bg-primary rounded-full"
-                }`}
-            >
-              {btn.label}
-            </button>
-          ))}
+                  : "text-secondary hover:bg-gray-300 rounded-full"
+                  }`}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
+          <div ref={scrollContainerRef} className="flex flex-col gap-24 pt-20 md:pt-28 pb-20 snap-y snap-mandatory overflow-y-auto h-screen scroller-thin">
+            {images.map((img, i) => (
+              <img
+                key={i}
+                ref={(el) => imageRefs.current[i] = el}
+                src={img}
+                className=" snap-center h-[500px] md:h-[700px] object-contain mx-auto"
+              />
+            ))}
+          </div>
+        </div>
+        <div className='w-11/12 md:hidden flex items-center justify-center py-4 gap-4'>
+          <p className='text-secondary text-4xl valky'>{totalSquare}m<sup>2</sup></p>
+        </div>
+        <div className='w-full md:hidden flex items-center gap-4 pt-12'>
+          <button onClick={() => navigate(-1)} className=' cursor-pointer bg-secondary transition-all duration-.3s hover:text-bck w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center'>
+            <SlArrowLeft color='#fff' />
+          </button>
+          <h1 className='valky text-secondary text-base'>Kthehu Pas</h1>
         </div>
       </div>
-      {isPriceCardVisible && <PriceCard onClose={togglePriceCard} />}
     </div>
   );
 };
