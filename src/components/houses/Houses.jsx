@@ -161,7 +161,7 @@ const Houses = ({
                       title: apartment.name,
                       navigateTo: () =>
                         navigate(`/apartments/${apartment.id}`),
-                      sqft: apartment.netoSquare,
+                      sqft: apartment.totalSquare,
                       bedroom: apartment.rooms,
                       floor: apartment.floorNumber,
                       type: apartment.type,

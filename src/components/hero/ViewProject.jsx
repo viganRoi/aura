@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { buildings } from "../../utils/server";
+import BuildingModal from "./BuildingModal";
 
   const ViewProject = () => {
   const navigate = useNavigate();
   const isSmallDev = window.innerWidth < 700;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredId, setHoveredId] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 
   const handleMouseMove = (e) => {
@@ -25,6 +27,8 @@ import { buildings } from "../../utils/server";
   };
 
   const currentBuilding = buildings[currentIndex];
+  const hoveredPoint = currentBuilding.points.find((point) => point.id === hoveredId);
+
 
   const getSvgHeight = () => {
     return "100%";
@@ -105,6 +109,7 @@ import { buildings } from "../../utils/server";
           <SlArrowRight color="var(--color-secondary)" />
         </button>
       </div>
+      {hoveredPoint && <BuildingModal title={hoveredPoint} mousePosition={mousePosition} />}
     </div>
   );
 };
