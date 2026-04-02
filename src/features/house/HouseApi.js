@@ -25,9 +25,9 @@ export const fetchAllHouses = createAsyncThunk(
 
 export const fetchAllHousesByNeighborhood = createAsyncThunk(
     'house/fetchAllHousesByNeighborhood',
-    async (_, { rejectWithValue }) => {
+    async (neighborhoodName, { rejectWithValue }) => {
         try {
-            const response = await fetch(API.fetchAllHousesByNeighborhood('standard'));
+            const response = await fetch(API.fetchAllHousesByNeighborhood(neighborhoodName));
             if (!response.ok) {
                 throw new Error('Failed to fetch houses by neighborhood');
             }

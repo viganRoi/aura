@@ -21,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/villas" element={<ProjectPage />} />
+          <Route path="/premium-villas" element={<ProjectPage type="premium" />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/svg-extrator" element={<SvgExtractor />} />
           <Route path="/house/svg-extractor" element={<HouseSvgExtractor />} />

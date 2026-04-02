@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getHouseData } from "../features/house/HouseSlice";
 import { fetchAllHousesByNeighborhood } from "../features/house/HouseApi";
 
-const ProjectPage = () => {
+const ProjectPage = ( { type = 'standard'} ) => {
   const dispatch = useDispatch();
   const houses = useSelector(getHouseData);
 
   useEffect(() => {
-    dispatch(fetchAllHousesByNeighborhood());
+    dispatch(fetchAllHousesByNeighborhood(type));
   }, [dispatch]);
 
 
