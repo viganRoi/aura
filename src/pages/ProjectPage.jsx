@@ -17,6 +17,7 @@ const ProjectPage = ( { type = 'standard'} ) => {
     <div className="bg-bck h-screen w-full relative">
       <Houses
         houses={houses}
+        type={type}
       />
     </div>
   );

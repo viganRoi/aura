@@ -9,7 +9,8 @@ import HouseHoverModal from './HouseHoverModal';
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const Houses = ({
-  houses
+  houses,
+  type = 'standard',
 }) => {
   const navigate = useNavigate();
   const typeFilter = useSelector(getRegularFilterType);
@@ -114,7 +115,7 @@ const Houses = ({
             // viewBox={building.viewBoxStyle}
             x="0px"
             y="0px"
-            viewBox="0 0 1080 1080"
+            viewBox={type === 'premium' ? "0 0 1190.6 841.9" : "0 0 1080 1080"}
             width="100%"
             xmlSpace="preserve"
             // preserveAspectRatio="xMidYMid slice"
@@ -122,14 +123,14 @@ const Houses = ({
             xmlns="http://www.w3.org/2000/svg"
           >
             <image
-              xlinkHref={`${imagePath}${currentIndex}.jpg`}
+              xlinkHref={`${imagePath}${type === 'premium' ? `${currentIndex + 1}.png` : `${currentIndex}.jpg`}`}
               alt=""
-              // width={building.imgWidth}
-              // height={building.imgHeight}
+              // width={building.imgWidth}2140
+              // height={building.imgHeight}1983
              
-            width="1938"
-            height="2140"
-            transform="matrix(0.5068 0 0 0.5069 48.9554 -2.3416)"
+            width={type === 'premium' ? "3083" : "1983"}
+            height={type === 'premium' ? "2181" : "2140"}
+            transform={type === 'premium' ? "matrix(0.387 0 0 0.387 -1.3959 -1.3209)" : "matrix(0.5068 0 0 0.5069 48.9554 -2.3416)"}
             />
             {filteredHouses?.map((apartment) => {
               // Check only typeFilter
