@@ -47,9 +47,9 @@ const Navbar = () => {
           {/* LOGO */}
           <a href="/">
             <img
-              src="/projektet/assets/images/brand/logo.svg"
+              src="/projektet/assets/svgs/Regina Palasë.svg"
               alt="logo"
-              className="w-32"
+              className="h-6"
             />
           </a>
           {/* RIGHT SIDE */}
