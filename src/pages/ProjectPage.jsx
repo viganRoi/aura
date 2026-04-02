@@ -14,7 +14,7 @@ const ProjectPage = ( { type = 'standard'} ) => {
 
 
   return (
-    <div className="bg-bck h-screen w-full relative">
+    <div className="bg-[#000] h-screen w-full relative">
       <Houses
         houses={houses}
         type={type}
