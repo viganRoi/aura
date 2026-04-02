@@ -95,7 +95,7 @@ import BuildingModal from "./BuildingModal";
           </div>
         </div>
       </div>
-      <div className="absolute w-11/12 h-0 flex justify-between p-4 z-10">
+      {/* <div className="absolute w-11/12 h-0 flex justify-between p-4 z-10">
         <button
           onClick={handlePrevious}
           className="bg-primary transition-all duration-300 hover:opacity-80 w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center"
@@ -108,7 +108,7 @@ import BuildingModal from "./BuildingModal";
         >
           <SlArrowRight color="var(--color-secondary)" />
         </button>
-      </div>
+      </div> */}
       {hoveredPoint && <BuildingModal title={hoveredPoint} mousePosition={mousePosition} />}
     </div>
   );

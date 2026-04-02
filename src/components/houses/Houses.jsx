@@ -79,7 +79,7 @@ const Houses = ({
 
   return (
     <div className="relative w-full h-[110vh] flex flex-col items-center justify-center">
-      <div className="w-11/12 h-0 absolute z-[99999] flex justify-between gap-4">
+      {/* <div className="w-11/12 h-0 absolute z-[99999] flex justify-between gap-4">
         <button
           onClick={handlePrevious}
           className="h-12 w-12 bg-primary rounded-full flex justify-center items-center"
@@ -92,7 +92,7 @@ const Houses = ({
         >
           <SlArrowRight fontSize="20" color="var(--color-secondary)" />
         </button>
-      </div>
+      </div> */}
       <div
         className="absolute md:relative w-full flex items-center justify-center"
         style={{ height: getSvgHeight() }}

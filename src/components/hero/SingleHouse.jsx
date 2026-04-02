@@ -14,23 +14,23 @@ const SingleHouse = ({ house, active, setActive, navigate }) => {
   const {
     type,
     pdfUrl,
-    totalSquare,
+    totalSquare = 0,
     numberOfRooms,
-    totalNetoSquare,
+    totalNetoSquare = 0,
   } = house;
 
   const images = [
     `/projektet/assets/images/renderat/Villas/T3BDV-2D.png`,
     `/projektet/assets/images/renderat/Villas/T3BV-2D.png`,
-    `/projektet/assets/images/renderat/Villas/T4BV-2D.png`,
-    `/projektet/assets/images/renderat/Villas/WVD-2D.png`,
+    // `/projektet/assets/images/renderat/Villas/T4BV-2D.png`,
+    // `/projektet/assets/images/renderat/Villas/WVD-2D.png`,
   ];
 
   const buttons = [
     { label: "1" },
     { label: "2" },
-    { label: "3" },
-    { label: "4" },
+    // { label: "3" },
+    // { label: "4" },
   ];
 
   const scrollToImage = (index) => {
@@ -65,32 +65,32 @@ const SingleHouse = ({ house, active, setActive, navigate }) => {
             <button onClick={() => navigate(-1)} className=' cursor-pointer bg-secondary/60 hover:bg-secondary transition-all duration-300 hover:text-bck w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center'>
               <SlArrowLeft color='#fff' />
             </button>
-            <h1 className='valky text-secondary text-lg'>Kthehu Pas</h1>
+            <h1 className='valky text-secondary text-lg'>Go back</h1>
           </div>
           <div className='w-full flex flex-col items-center gap-4 py-4'>
             <div className='hidden md:flex w-full items-start justify-between gap-4 py-4'>
-              <p className='text-6xl valky'>{totalNetoSquare}m<sup>2</sup></p>
+              <p className='text-6xl valky'>{totalNetoSquare.toFixed(2)}m<sup>2</sup></p>
             </div>
             <div className='w-full flex justify-between items-center mt-2'>
-              <p className='text-lg md:text-xl axiforma-thin'>Tipi</p>
+              <p className='text-lg md:text-xl axiforma-thin'>Type</p>
               <p className='text-xl md:text-2xl valky'>{type}</p>
             </div>
             <div className='w-full flex justify-between items-center mt-2'>
-              <p className='text-lg md:text-xl axiforma-thin'>Dhoma</p>
+              <p className='text-lg md:text-xl axiforma-thin'>Rooms</p>
               <p className='text-xl md:text-2xl valky'>{numberOfRooms}</p>
             </div>
             <div className='w-full flex justify-between items-center mt-2'>
-              <p className='text-lg md:text-xl axiforma-thin'>Siperfaqja</p>
+              <p className='text-lg md:text-xl axiforma-thin'>Total Area</p>
               <p className='text-xl md:text-2xl valky'>{totalSquare}m<sup>2</sup></p>
             </div>
             <div className='w-full flex justify-between items-center mt-2'>
-              <p className='text-lg md:text-xl axiforma-thin'>Siperfaqja neto</p>
+              <p className='text-lg md:text-xl axiforma-thin'>Net Area</p>
               <p className='text-xl md:text-2xl valky'>{totalNetoSquare}m<sup>2</sup></p>
             </div>
           </div>
           <button className="relative uppercase inline-flex items-center justify-center w-full px-12 py-3 overflow-hidden axiforma-thin text-white bg-secondary rounded-lg group">
             <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-tertiary rounded-full group-hover:w-124 group-hover:h-124"></span>
-            <span className="relative">Rezervo një takim</span>
+            <span className="relative">Book appointment</span>
           </button>
           <button
             onClick={() => window.open(`${pdfPath}${pdfUrl}`, "_blank")}
@@ -109,7 +109,7 @@ const SingleHouse = ({ house, active, setActive, navigate }) => {
                   : "text-secondary hover:bg-gray-300 rounded-full"
                   }`}
               >
-                {btn.label}
+                Floor {btn.label}
               </button>
             ))}
           </div>
@@ -131,7 +131,7 @@ const SingleHouse = ({ house, active, setActive, navigate }) => {
           <button onClick={() => navigate(-1)} className=' cursor-pointer bg-secondary transition-all duration-.3s hover:text-bck w-[35px] md:w-[50px] h-[35px] md:h-[50px] radius-50 rounded-[50px] flex items-center justify-center'>
             <SlArrowLeft color='#fff' />
           </button>
-          <h1 className='valky text-secondary text-base'>Kthehu Pas</h1>
+          <h1 className='valky text-secondary text-base'>Go back</h1>
         </div>
       </div>
     </div>
